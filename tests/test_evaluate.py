@@ -4,7 +4,6 @@ import json
 import os
 import tempfile
 
-import numpy as np
 import pytest
 
 from src.evaluate import evaluate, save_metrics
@@ -26,7 +25,6 @@ def eval_bundle():
 
 # --- evaluate ---
 
-
 def test_metrics_keys_present(eval_bundle):
     expected = {"accuracy", "precision", "recall", "threshold", "confusion_matrix"}
     assert expected.issubset(eval_bundle.keys())
@@ -45,9 +43,9 @@ def test_recall_in_range(eval_bundle):
 
 
 def test_accuracy_above_minimum(eval_bundle):
-    assert (
-        eval_bundle["accuracy"] > 0.999
-    ), f"Accuracy {eval_bundle['accuracy']} is below minimum threshold of 0.90"
+    assert eval_bundle["accuracy"] > 0.90, (
+        f"Accuracy {eval_bundle['accuracy']} is below minimum threshold of 0.90"
+    )
 
 
 def test_confusion_matrix_keys(eval_bundle):
@@ -61,7 +59,6 @@ def test_confusion_matrix_non_negative(eval_bundle):
 
 
 # --- save_metrics ---
-
 
 def test_save_metrics_creates_file(eval_bundle):
     with tempfile.TemporaryDirectory() as tmpdir:

@@ -1,11 +1,9 @@
 """Unit tests for src/preprocess.py"""
 
 import numpy as np
-import pandas as pd
 import pytest
 
 from src.preprocess import (
-    FEATURES,
     build_features,
     load_data,
     split_data,

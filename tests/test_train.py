@@ -1,7 +1,6 @@
 """Unit tests for src/train.py"""
 
 import os
-import pickle
 import tempfile
 
 import numpy as np

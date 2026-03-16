@@ -10,8 +10,6 @@ Run directly:
 import json
 import os
 
-import numpy as np
-
 from src.preprocess import build_features, load_data, split_data
 from src.train import load_model
 
