@@ -1,0 +1,127 @@
+# mlops-obesity-classifier
+
+A hands-on MLOps starter project built around a logistic regression model that classifies obesity risk. This repo is the **prerequisite starting point** for the [MLOps Labs](#labs) — clone it, run it, then work through the labs to progressively add MLOps tooling.
+
+---
+
+## What this project does
+
+Trains a logistic regression model on the [Obesity Dataset](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition) to classify whether a person is obese (binary: 0/1). It achieves ~97% accuracy on the validation set.
+
+The model pipeline is broken into three reusable modules:
+
+| Module | Responsibility |
+|---|---|
+| `src/preprocess.py` | Load data, create binary target, split, one-hot encode |
+| `src/train.py` | Train logistic regression, save model as `.pkl` |
+| `src/evaluate.py` | Compute accuracy/precision/recall, save `metrics.json` |
+
+---
+
+## Prerequisites
+
+- Python 3.11+
+- Git
+
+---
+
+## Quickstart
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/rohitnayak/mlops-obesity-classifier.git
+cd mlops-obesity-classifier
+
+# 2. Create and activate a virtual environment
+python -m venv .venv
+
+# Windows (PowerShell)
+.venv\Scripts\Activate.ps1
+
+# Mac / Linux
+source .venv/bin/activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Train the model
+python -m src.train
+
+# 5. Evaluate the model
+python -m src.evaluate
+
+# 6. Run the test suite
+pytest tests/ -v
+```
+
+After step 4 you'll have a trained model at `models/model.pkl`.
+After step 5 you'll have evaluation results at `metrics.json`.
+All tests in step 6 should pass. ✅
+
+---
+
+## Project structure
+
+```
+mlops-obesity-classifier/
+├── .github/
+│   └── workflows/          ← GitHub Actions workflows (added in Lab 1)
+├── data/
+│   └── ObesityDataSet_Original.csv
+├── notebooks/
+│   └── obesity_classification.ipynb   ← original exploratory notebook
+├── src/
+│   ├── __init__.py
+│   ├── preprocess.py
+│   ├── train.py
+│   └── evaluate.py
+├── tests/
+│   ├── test_preprocess.py
+│   ├── test_train.py
+│   └── test_evaluate.py
+├── models/                 ← saved model artefacts (git-ignored)
+├── labs/                   ← step-by-step lab guides (see below)
+├── .flake8
+├── pyproject.toml          ← black config
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Labs
+
+The labs build progressively on this starter project, each introducing a new MLOps concept.
+
+| Lab | Topic | Key tools |
+|---|---|---|
+| [Lab 1](labs/lab-01-github-actions-ci.md) | GitHub Actions — CI pipeline | GitHub Actions |
+| [Lab 2](labs/lab-02-mlflow-experiment-tracking.md) | Experiment tracking | MLflow |
+| [Lab 3](labs/lab-03-dvc-versioning.md) | Data & model versioning | DVC |
+| [Lab 4](labs/lab-04-fastapi-model-serving.md) | REST API model serving | FastAPI |
+| [Lab 5](labs/lab-05-docker-containerisation.md) | Containerisation | Docker |
+| [Lab 6](labs/lab-06-advanced-cicd.md) | Advanced CI/CD pipeline | GitHub Actions + Docker Hub |
+| [Lab 7](labs/lab-07-full-mlops-pipeline.md) | Full MLOps pipeline | DVC + MLflow + GitHub Actions |
+
+Start with [Lab 1](labs/lab-01-github-actions-ci.md).
+
+---
+
+## Running individual modules
+
+```bash
+# Train only
+python -m src.train
+
+# Evaluate only (requires a trained model)
+python -m src.evaluate
+
+# Run tests with coverage output
+pytest tests/ -v
+```
+
+---
+
+## Companion repo
+
+For the foundational ML concepts this project builds on, see [ml-concepts-refresher](https://github.com/rohitnayak/ml-concepts-refresher).
