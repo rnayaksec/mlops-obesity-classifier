@@ -109,6 +109,31 @@ Start with [Lab 1](labs/lab-01-github-actions-ci.md).
 
 ---
 
+## Branching strategy
+
+`main` always reflects the latest completed lab — it moves forward as you work through the course.
+
+Each completed lab is also saved as a permanent reference branch so you can see the exact state of the project at any point:
+
+| Branch            | State                                               |
+| ----------------- | --------------------------------------------------- |
+| `main`            | Starter project — prereqs complete, no labs started |
+| `lab-01-solution` | After Lab 1: GitHub Actions CI pipeline             |
+| `lab-02-solution` | After Lab 2: MLflow experiment tracking             |
+| `lab-03-solution` | After Lab 3: DVC data & model versioning            |
+| `lab-04-solution` | After Lab 4: FastAPI model serving                  |
+| `lab-05-solution` | After Lab 5: Docker containerisation                |
+| `lab-06-solution` | After Lab 6: Advanced CI/CD pipeline                |
+| `lab-07-solution` | After Lab 7: Full MLOps pipeline                    |
+
+If you get stuck on a lab, check out the previous solution branch to see the working starting point:
+```bash
+git checkout lab-02-solution
+```
+
+---
+
+
 ## Running individual modules
 
 ```bash
