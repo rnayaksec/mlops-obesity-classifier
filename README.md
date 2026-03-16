@@ -1,3 +1,5 @@
+[![CI](https://github.com/rnayaksec/mlops-obesity-classifier/actions/workflows/ci.yml/badge.svg)](https://github.com/rnayaksec/mlops-obesity-classifier/actions/workflows/ci.yml)
+
 # mlops-obesity-classifier
 
 A hands-on MLOps starter project built around a logistic regression model that classifies obesity risk. This repo is the **prerequisite starting point** for the [MLOps Labs](#labs) — clone it, run it, then work through the labs to progressively add MLOps tooling.
@@ -10,11 +12,11 @@ Trains a logistic regression model on the [Obesity Dataset](https://archive.ics.
 
 The model pipeline is broken into three reusable modules:
 
-| Module | Responsibility |
-|---|---|
+| Module              | Responsibility                                         |
+| ------------------- | ------------------------------------------------------ |
 | `src/preprocess.py` | Load data, create binary target, split, one-hot encode |
-| `src/train.py` | Train logistic regression, save model as `.pkl` |
-| `src/evaluate.py` | Compute accuracy/precision/recall, save `metrics.json` |
+| `src/train.py`      | Train logistic regression, save model as `.pkl`        |
+| `src/evaluate.py`   | Compute accuracy/precision/recall, save `metrics.json` |
 
 ---
 
@@ -93,15 +95,15 @@ mlops-obesity-classifier/
 
 The labs build progressively on this starter project, each introducing a new MLOps concept.
 
-| Lab | Topic | Key tools |
-|---|---|---|
-| [Lab 1](labs/lab-01-github-actions-ci.md) | GitHub Actions — CI pipeline | GitHub Actions |
-| [Lab 2](labs/lab-02-mlflow-experiment-tracking.md) | Experiment tracking | MLflow |
-| [Lab 3](labs/lab-03-dvc-versioning.md) | Data & model versioning | DVC |
-| [Lab 4](labs/lab-04-fastapi-model-serving.md) | REST API model serving | FastAPI |
-| [Lab 5](labs/lab-05-docker-containerisation.md) | Containerisation | Docker |
-| [Lab 6](labs/lab-06-advanced-cicd.md) | Advanced CI/CD pipeline | GitHub Actions + Docker Hub |
-| [Lab 7](labs/lab-07-full-mlops-pipeline.md) | Full MLOps pipeline | DVC + MLflow + GitHub Actions |
+| Lab                                                | Topic                        | Key tools                     |
+| -------------------------------------------------- | ---------------------------- | ----------------------------- |
+| [Lab 1](labs/lab-01-github-actions-ci.md)          | GitHub Actions — CI pipeline | GitHub Actions                |
+| [Lab 2](labs/lab-02-mlflow-experiment-tracking.md) | Experiment tracking          | MLflow                        |
+| [Lab 3](labs/lab-03-dvc-versioning.md)             | Data & model versioning      | DVC                           |
+| [Lab 4](labs/lab-04-fastapi-model-serving.md)      | REST API model serving       | FastAPI                       |
+| [Lab 5](labs/lab-05-docker-containerisation.md)    | Containerisation             | Docker                        |
+| [Lab 6](labs/lab-06-advanced-cicd.md)              | Advanced CI/CD pipeline      | GitHub Actions + Docker Hub   |
+| [Lab 7](labs/lab-07-full-mlops-pipeline.md)        | Full MLOps pipeline          | DVC + MLflow + GitHub Actions |
 
 Start with [Lab 1](labs/lab-01-github-actions-ci.md).
 

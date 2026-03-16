@@ -8,9 +8,9 @@ Run directly to train and save the model:
 
 import os
 import pickle
-
+import mlflow
+import mlflow.sklearn
 from sklearn.linear_model import LogisticRegression
-
 from src.preprocess import build_features, load_data, split_data
 
 SEED = 42
@@ -41,20 +41,45 @@ def load_model(path: str = MODEL_PATH):
 
 
 def main():
-    print("Loading data...")
-    df = load_data(DATA_PATH)
+    # --- configurable hyperparameters (will log these) ---
+    # Lab2 - trial 1
+    solver = "liblinear"
+    # Lab2 - trial 2
+    # solver = "saga"
+    # Lab2 - trial 3
+    max_iter = 200
+    threshold = 0.5
 
-    print("Splitting data...")
-    df_train, df_val, df_test, y_train, y_val, y_test = split_data(df)
+    mlflow.set_experiment("obesity-classifier")
 
-    print("Building features...")
-    X_train, X_val, X_test, dv = build_features(df_train, df_val, df_test)
+    with mlflow.start_run():
+        print("Loading data...")
+        df = load_data(DATA_PATH)
+        df_train, df_val, df_test, y_train, y_val, y_test = split_data(df)
+        X_train, X_val, X_test, dv = build_features(df_train, df_val, df_test)
 
-    print("Training model...")
-    model = train_model(X_train, y_train)
+        # Log hyperparameters
+        mlflow.log_param("solver", solver)
+        mlflow.log_param("max_iter", max_iter)
+        mlflow.log_param("threshold", threshold)
 
-    save_model(model, dv)
-    print("Training complete.")
+        print("Training model...")
+        model = LogisticRegression(solver=solver, max_iter=max_iter, random_state=SEED)
+        model.fit(X_train, y_train)
+
+        # Evaluate and log metrics
+        from src.evaluate import evaluate
+
+        metrics = evaluate(model, dv, X_val, y_val, threshold=threshold)
+        mlflow.log_metric("accuracy", metrics["accuracy"])
+        mlflow.log_metric("precision", metrics["precision"])
+        mlflow.log_metric("recall", metrics["recall"])
+
+        # Log the model artefact
+        mlflow.sklearn.log_model(model, artifact_path="model")
+
+        save_model(model, dv)
+        print(f"Run complete. Accuracy: {metrics['accuracy']}")
 
 
 if __name__ == "__main__":
