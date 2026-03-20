@@ -31,7 +31,7 @@ The model pipeline is broken into three reusable modules:
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/rohitnayak/mlops-obesity-classifier.git
+git clone https://github.com/rnayaksec/mlops-obesity-classifier.git
 cd mlops-obesity-classifier
 
 # 2. Create and activate a virtual environment
@@ -151,4 +151,4 @@ pytest tests/ -v
 
 ## Companion repo
 
-For the foundational ML concepts this project builds on, see [ml-concepts-refresher](https://github.com/rohitnayak/ml-concepts-refresher).
+For the foundational ML concepts this project builds on, see [ml-concepts-refresher](https://github.com/rnayaksec/ml-concepts-refresher).
