@@ -1,0 +1,60 @@
+services:
+
+  # ── Your FastAPI model server ──────────────────────────────────────────
+  api:
+    build: .                          # builds from your Dockerfile in current dir
+    image: tornhatsec/obesity-classifier:v1           # or use: image: yourname/my-model-api:v1
+    container_name: obesity-classifier
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models          # mount models dir so you can swap without rebuilding
+    environment:
+      - ENV=production
+    networks:
+      - monitoring
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── Prometheus (scrapes /metrics from your API) ────────────────────────
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  # ── Grafana (visualizes Prometheus metrics) ────────────────────────────
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin   # change this
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+    networks:
+      - monitoring
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  monitoring:
+    driver: bridge

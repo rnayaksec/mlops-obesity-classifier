@@ -12,6 +12,9 @@ from pydantic import BaseModel
 
 from src.train import MODEL_PATH, load_model
 
+from prometheus_fastapi_instrumentator import Instrumentator
+
+
 # --- Request / Response schemas ---
 
 
@@ -59,6 +62,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+Instrumentator().instrument(app).expose(app)
 
 # --- Endpoints ---
 
