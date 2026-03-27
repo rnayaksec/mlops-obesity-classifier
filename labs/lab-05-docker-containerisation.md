@@ -231,6 +231,12 @@ uvicorn src.api:app --reload
 curl http://localhost:8000/metrics   # should return Prometheus text format
 ```
 
+```powershell
+# PowerShell alternative
+uvicorn src.api:app --reload
+Invoke-WebRequest http://localhost:8000/metrics   # should return Prometheus text format
+```
+
 ---
 
 ### Step 10 — Create the Prometheus config
@@ -361,6 +367,15 @@ curl http://localhost:8000/metrics   # raw Prometheus output
 curl -X POST http://localhost:8000/predict \
   -H "Content-Type: application/json" \
   -d '{"your": "payload"}'
+```
+
+```powershell
+# PowerShell alternatives
+Invoke-WebRequest http://localhost:8000/health
+Invoke-WebRequest http://localhost:8000/metrics   # raw Prometheus output
+Invoke-WebRequest -Uri http://localhost:8000/predict -Method POST `
+  -ContentType "application/json" `
+  -Body '{"your": "payload"}'
 ```
 
 **Prometheus** — open `http://localhost:9090`:
