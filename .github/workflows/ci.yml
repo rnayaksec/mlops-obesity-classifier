@@ -25,5 +25,8 @@ jobs:
       - name: Lint with flake8
         run: flake8 src/ tests/
 
+      - name: Train model
+        run: python -m src.train
+
       - name: Run tests
         run: pytest tests/ -v
