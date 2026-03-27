@@ -214,11 +214,10 @@ Every component has a job:
 
 ## Where to go next
 
-| Topic | Tool | Resource |
-|---|---|---|
-| Cloud DVC remote | S3 / GCS | `dvc remote add -d myremote s3://bucket/path` |
-| Model registry | MLflow Model Registry | `mlflow.register_model()` |
-| Kubernetes deployment | KServe | [iam-veeramalla/mlops-zero-to-hero](https://github.com/iam-veeramalla/mlops-zero-to-hero) Module 7 |
-| Cloud CI/CD | AWS SageMaker Pipelines | [iam-veeramalla/mlops-zero-to-hero](https://github.com/iam-veeramalla/mlops-zero-to-hero) Module 8 |
+The pipeline is now automated, versioned, and reproducible — but it's still a black box once deployed. The next phase adds production observability and continuous training:
 
-**Congratulations — you've completed the MLOps labs.** 🎉
+- **[Lab 7a](lab-07a-prometheus-grafana.md)** — expose a `/metrics` endpoint on the model container and visualise prediction counts, latency, and accuracy live in Grafana
+- **[Lab 7b](lab-07b-drift-detection.md)** — add a post-deploy GitHub Actions stage that detects accuracy drift and fails the pipeline before bad models reach users
+- **[Lab 7c](lab-07c-continuous-training.md)** — add a scheduled trigger so `dvc repro` runs automatically on a weekly cadence, rebuilding and pushing the image only when inputs have changed
+
+**Next:** [Lab 7a — Prometheus + Grafana Monitoring](lab-07a-prometheus-grafana.md)

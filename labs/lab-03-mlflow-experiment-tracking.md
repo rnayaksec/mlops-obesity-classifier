@@ -1,6 +1,6 @@
-# Lab 2 — Experiment Tracking with MLflow
+# Lab 3 — Experiment Tracking with MLflow
 
-**Prerequisites:** Lab 1 complete. CI pipeline passing.
+**Prerequisites:** Lab 2 complete. DVC initialised, dataset and model tracked.
 
 **What you'll build:** MLflow tracking inside `train.py` so every training run automatically logs its hyperparameters, metrics, and model artefact. You'll compare runs in the MLflow UI.
 
@@ -146,4 +146,4 @@ Your CI pipeline will run — it skips the MLflow UI but still validates the cod
 
 ---
 
-**Next:** [Lab 3 — Data & Model Versioning with DVC](lab-03-dvc-versioning.md)
+**Next:** [Lab 4 — REST API Model Serving with FastAPI](lab-04-fastapi-model-serving.md)

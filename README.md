@@ -95,17 +95,21 @@ mlops-obesity-classifier/
 
 The labs build progressively on this starter project, each introducing a new MLOps concept.
 
-| Lab                                                | Topic                        | Key tools                     |
-| -------------------------------------------------- | ---------------------------- | ----------------------------- |
-| [Lab 1](labs/lab-01-github-actions-ci.md)          | GitHub Actions — CI pipeline | GitHub Actions                |
-| [Lab 2](labs/lab-02-mlflow-experiment-tracking.md) | Experiment tracking          | MLflow                        |
-| [Lab 3](labs/lab-03-dvc-versioning.md)             | Data & model versioning      | DVC                           |
-| [Lab 4](labs/lab-04-fastapi-model-serving.md)      | REST API model serving       | FastAPI                       |
-| [Lab 5](labs/lab-05-docker-containerisation.md)    | Containerisation             | Docker                        |
-| [Lab 6](labs/lab-06-advanced-cicd.md)              | Advanced CI/CD pipeline      | GitHub Actions + Docker Hub   |
-| [Lab 7](labs/lab-07-full-mlops-pipeline.md)        | Full MLOps pipeline          | DVC + MLflow + GitHub Actions |
+| Lab                                                      | Topic                           | Key tools                          |
+| -------------------------------------------------------- | ------------------------------- | ---------------------------------- |
+| [Lab 0](labs/lab-00-mlops-foundations.md)               | MLOps foundations               | Concepts only — read first         |
+| [Lab 1](labs/lab-01-github-actions-ci.md)               | GitHub Actions — CI pipeline    | GitHub Actions                     |
+| [Lab 2](labs/lab-02-dvc-versioning.md)                  | Data & model versioning         | DVC                                |
+| [Lab 3](labs/lab-03-mlflow-experiment-tracking.md)      | Experiment tracking             | MLflow                             |
+| [Lab 4](labs/lab-04-fastapi-model-serving.md)           | REST API model serving          | FastAPI                            |
+| [Lab 5](labs/lab-05-docker-containerisation.md)         | Containerisation                | Docker                             |
+| [Lab 6](labs/lab-06-advanced-cicd.md)                   | Advanced CI/CD pipeline         | GitHub Actions + Docker Hub        |
+| [Lab 7](labs/lab-07-full-mlops-pipeline.md)             | DVC pipeline + MLflow in CI     | DVC + MLflow + GitHub Actions      |
+| [Lab 7a](labs/lab-07a-prometheus-grafana.md)            | Live monitoring                 | Prometheus + Grafana + Docker Compose |
+| [Lab 7b](labs/lab-07b-drift-detection.md)               | Drift detection                 | GitHub Actions + MLflow            |
+| [Lab 7c](labs/lab-07c-continuous-training.md)           | Continuous training             | GitHub Actions (scheduled)         |
 
-Start with [Lab 1](labs/lab-01-github-actions-ci.md).
+Start with [Lab 0](labs/lab-00-mlops-foundations.md).
 
 ---
 
@@ -115,16 +119,19 @@ Start with [Lab 1](labs/lab-01-github-actions-ci.md).
 
 Each completed lab is also saved as a permanent reference branch so you can see the exact state of the project at any point:
 
-| Branch            | State                                               |
-| ----------------- | --------------------------------------------------- |
-| `main`            | Starter project — prereqs complete, no labs started |
-| `lab-01-solution` | After Lab 1: GitHub Actions CI pipeline             |
-| `lab-02-solution` | After Lab 2: MLflow experiment tracking             |
-| `lab-03-solution` | After Lab 3: DVC data & model versioning            |
-| `lab-04-solution` | After Lab 4: FastAPI model serving                  |
-| `lab-05-solution` | After Lab 5: Docker containerisation                |
-| `lab-06-solution` | After Lab 6: Advanced CI/CD pipeline                |
-| `lab-07-solution` | After Lab 7: Full MLOps pipeline                    |
+| Branch             | State                                                |
+| ------------------ | ---------------------------------------------------- |
+| `main`             | Starter project — prereqs complete, no labs started  |
+| `lab-01-solution`  | After Lab 1: GitHub Actions CI pipeline              |
+| `lab-02-solution`  | After Lab 2: DVC data & model versioning             |
+| `lab-03-solution`  | After Lab 3: MLflow experiment tracking              |
+| `lab-04-solution`  | After Lab 4: FastAPI model serving                   |
+| `lab-05-solution`  | After Lab 5: Docker containerisation                 |
+| `lab-06-solution`  | After Lab 6: Advanced CI/CD pipeline                 |
+| `lab-07-solution`  | After Lab 7: DVC pipeline + MLflow in CI             |
+| `lab-07a-solution` | After Lab 7a: Prometheus + Grafana monitoring        |
+| `lab-07b-solution` | After Lab 7b: Drift detection in GitHub Actions      |
+| `lab-07c-solution` | After Lab 7c: Scheduled continuous training          |
 
 If you get stuck on a lab, check out the previous solution branch to see the working starting point:
 ```bash

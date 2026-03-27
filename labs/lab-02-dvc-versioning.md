@@ -1,6 +1,6 @@
-# Lab 3 — Data & Model Versioning with DVC
+# Lab 2 — Data & Model Versioning with DVC
 
-**Prerequisites:** Lab 2 complete.
+**Prerequisites:** Lab 1 complete. CI pipeline passing.
 
 **What you'll build:** DVC tracking for your dataset and trained model, plus a local DVC remote so data is stored separately from git.
 
@@ -62,7 +62,7 @@ git commit -m "data: add obesity dataset under DVC tracking"
 
 ## Step 4 — Track your trained model
 
-First train the model if you haven't already:
+Train the model:
 
 ```bash
 python -m src.train
@@ -142,4 +142,4 @@ The file is restored exactly as it was.
 
 ---
 
-**Next:** [Lab 4 — REST API Model Serving with FastAPI](lab-04-fastapi-model-serving.md)
+**Next:** [Lab 3 — Experiment Tracking with MLflow](lab-03-mlflow-experiment-tracking.md)

@@ -1,0 +1,57 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python -m src.train
+    deps:
+    - path: data/ObesityDataSet_Original.csv
+      hash: md5
+      md5: 18aeb683c417f29db6c69bfbf393b089
+      size: 263644
+    - path: src/preprocess.py
+      hash: md5
+      md5: 79e2392a3ac1a27ec8bfc8096e463fa5
+      size: 2508
+    - path: src/train.py
+      hash: md5
+      md5: d453062e1e1ce2341bfc016421214580
+      size: 3108
+    params:
+      params.yaml:
+        data.path: data/ObesityDataSet_Original.csv
+        data.test_size: 0.2
+        data.val_size: 0.33
+        model.max_iter: 200
+        model.seed: 42
+        model.solver: liblinear
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 1a67c39024da14dd79937ed2ae79b1ca
+      size: 1673
+  evaluate:
+    cmd: python -m src.evaluate
+    deps:
+    - path: data/ObesityDataSet_Original.csv
+      hash: md5
+      md5: 18aeb683c417f29db6c69bfbf393b089
+      size: 263644
+    - path: models/model.pkl
+      hash: md5
+      md5: 1a67c39024da14dd79937ed2ae79b1ca
+      size: 1673
+    - path: src/evaluate.py
+      hash: md5
+      md5: 1855dd304173377b163de1b7aa978b98
+      size: 2215
+    - path: src/preprocess.py
+      hash: md5
+      md5: 79e2392a3ac1a27ec8bfc8096e463fa5
+      size: 2508
+    params:
+      params.yaml:
+        model.threshold: 0.5
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 1d5c1db45fc8e9b31eec579e2bbc3b9d
+      size: 181
