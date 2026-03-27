@@ -33,7 +33,7 @@ jobs:
           with open("metrics.json") as f:
               m = json.load(f)
           accuracy = m["accuracy"]
-          threshold = 0.91
+          threshold = 0.999
           print(f"Model accuracy: {accuracy} (threshold: {threshold})")
           if accuracy < threshold:
               print(f"FAILED: accuracy {accuracy} is below minimum {threshold}")
