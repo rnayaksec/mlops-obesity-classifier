@@ -1,0 +1,56 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  train-evaluate-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Train model
+        run: python -m src.train
+
+      - name: Evaluate model
+        run: python -m src.evaluate
+
+      - name: Accuracy quality gate
+        run: |
+          python - <<'EOF'
+          import json, sys
+          with open("metrics.json") as f:
+              m = json.load(f)
+          accuracy = m["accuracy"]
+          threshold = 0.999
+          print(f"Model accuracy: {accuracy} (threshold: {threshold})")
+          if accuracy < threshold:
+              print(f"FAILED: accuracy {accuracy} is below minimum {threshold}")
+              sys.exit(1)
+          print("PASSED: accuracy gate")
+          EOF
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/obesity-classifier:latest .
+
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/obesity-classifier:latest
